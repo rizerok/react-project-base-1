@@ -1,8 +1,7 @@
 /* eslint global-require: "off", no-console: "off" */
 const merge = require('webpack-merge');
-const dotenv = require('dotenv');
 
-dotenv.config();
+require('dotenv').config();
 
 const sameRule = (a, b) => {
   if (String(a.test) !== String(b.test)) { // check test
@@ -53,24 +52,25 @@ module.exports = env => {
   const ENV = env || process.env.NODE_ENV || 'development';
 
   let clientConfig;
+  const serverConfig = require('./webpack/webpack.server.base.js');
 
   console.log(`Run ${ENV} build.`);
 
   // eslint-disable-next-line default-case
-  switch (ENV) {
+  switch (ENV) { // TODO rewrite
   case 'development': {
-    const base = require('./webpack/webpack.client.js');
-    const dev = require('./webpack/webpack.dev.js');
+    const base = require('./webpack/webpack.client.base.js');
+    const dev = require('./webpack/webpack.client.dev.js');
     clientConfig = merge(mergeConfig)(base, dev);
     break;
   }
   case 'production': {
-    const base = require('./webpack/webpack.client.js');
-    const prod = require('./webpack/webpack.prod.js');
+    const base = require('./webpack/webpack.client.base.js');
+    const prod = require('./webpack/webpack.client.prod.js');
     clientConfig = merge(mergeConfig)(base, prod);
     break;
   }
   }
 
-  return clientConfig;
+  return [clientConfig, serverConfig];
 };

@@ -1,5 +1,6 @@
 # Compiled
 /public
+/server
 
 # Dependencies
 /node_modules

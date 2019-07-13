@@ -12,7 +12,7 @@ module.exports = {
     node: true,
     es6: true
   },
-  plugins: [],
+  plugins: ['react'],
   rules: {
     indent: ['error', 2],
     'comma-dangle': ['error', 'never'],
@@ -32,6 +32,9 @@ module.exports = {
     'space-before-blocks': 'error',
     'func-names': 'error',
     'arrow-spacing': 'error',
-    'arrow-parens': 'off'
+    'arrow-parens': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'react/jsx-uses-vars': 2,
+    'react/jsx-uses-react': 2
   }
 };

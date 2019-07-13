@@ -1,4 +1,4 @@
-/* eslint import/no-extraneous-dependencies: "off", no-console: "off" */
+/* eslint no-console: "off" */
 require('dotenv').config();
 const NodeSsh = require('node-ssh');
 const os = require('os');
