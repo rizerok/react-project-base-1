@@ -2,8 +2,8 @@
 
 base for simplest projects on react.
 
-1. webpack
-2. pug
+1. webpack, babel
+2. react, ssr
 3. scss
 4. live reload, HMR
 5. eslint, stylelint + prettier
@@ -11,4 +11,4 @@ base for simplest projects on react.
 7. deploy script
 8. .env
 9. editorconfig
-10. babel
+10. koa
