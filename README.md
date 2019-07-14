@@ -12,3 +12,4 @@ base for simplest projects on react.
 8. .env
 9. editorconfig
 10. koa
+11. svgr
