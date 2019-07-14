@@ -5,7 +5,7 @@ const { styles: assetsPath } = require('../alias');
 const localIdentName = process.env.NODE_ENV === 'development'
   ? '[path][name]-[local]'
   : '[hash:base64:8]';
-const localsConvention = 'camelCase';
+const localsConvention = 'camelCaseOnly';
 
 // Loaders
 const MiniCssExtractPluginLoader = {
