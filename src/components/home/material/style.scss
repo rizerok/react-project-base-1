@@ -1,0 +1,17 @@
+.material {
+
+  &-container {
+    margin-top: 20px;
+  }
+
+  &-components {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-title {
+    text-align: center;
+  }
+
+}

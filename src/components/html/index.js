@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 const Html = ({
-  children, css = [], scripts = [], state = '{}'
+  children, css = [], scripts = [], state = '{}', jss = ''
 }) => {
   const head = Helmet.renderStatic();
   return (
@@ -15,6 +15,7 @@ const Html = ({
         {head.meta.toComponent()}
         {head.link.toComponent()}
         {head.script.toComponent()}
+        {jss && <style id="jss-server-side">${jss}</style>}
         {css.filter(Boolean).map(href => (
           <link key={href} rel="stylesheet" href={href} />
         ))}

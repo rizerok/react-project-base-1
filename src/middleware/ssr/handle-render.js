@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
+// material
+import { ServerStyleSheets } from '@material-ui/styles';
+import MuiProvider from 'components/mui/provider';
 // src
 import reducer from 'src/reducers';
 import routes from 'src/routes';
@@ -37,10 +40,16 @@ const handleRender = preloadedState => async ctx => {
 
   const staticRouterContext = {};
 
+  const sheets = new ServerStyleSheets();
+
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={ctx.url} context={staticRouterContext}>
-        {renderRoutes(routes)}
+        {sheets.collect(
+          <MuiProvider>
+            {renderRoutes(routes)}
+          </MuiProvider>
+        )}
       </StaticRouter>
     </Provider>
   );
@@ -51,6 +60,7 @@ const handleRender = preloadedState => async ctx => {
     css={[manifest['bundle.css'], manifest['vendor.css']]}
     scripts={[manifest['bundle.js'], manifest['vendor.js']]}
     state={JSON.stringify(finalState)}
+    jss={sheets.toString()}
   >
     {content}
   </Html>)}`;
