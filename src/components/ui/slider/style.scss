@@ -1,0 +1,26 @@
+.indicator-list {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.indicator {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    border-radius: 50%;
+    background: #fff;
+    width: 15px;
+    height: 15px;
+    transition: transform .2s;
+  }
+
+  &.is-current::before {
+    transform: scale(1.5);
+  }
+}

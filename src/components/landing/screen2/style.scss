@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  font-size: 46px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.content {
+  margin-top: 40px;
+
+  &-area {
+    display: flex;
+    //flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

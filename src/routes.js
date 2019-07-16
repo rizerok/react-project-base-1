@@ -1,7 +1,7 @@
 import RootLayout from 'components/root/layout';
 import Counter from 'components/counter';
 import NotFound from 'components/notfound';
-import Home from 'components/home';
+import Landing from 'components/landing';
 
 const routes = [
   {
@@ -10,7 +10,7 @@ const routes = [
       {
         path: '/',
         exact: true,
-        component: Home
+        component: Landing
       },
       { path: '/counter', component: Counter },
       {

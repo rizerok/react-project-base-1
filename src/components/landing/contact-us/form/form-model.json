@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Name",
+    "name": "name",
+    "type": "input"
+  },
+  {
+    "label": "Phone",
+    "name": "phone",
+    "type": "input"
+  },
+  {
+    "label": "Email",
+    "name": "email",
+    "type": "input"
+  }
+]
