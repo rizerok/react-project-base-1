@@ -2,5 +2,5 @@
 module.exports = {
   js: /\.js$/,
   style: /\.scss$/,
-  images: /\.(png|svg|jpg|gif)$/
+  images: /\.(png|svg|jpe?g|gif)$/
 };
