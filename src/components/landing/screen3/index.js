@@ -6,7 +6,7 @@ import s from './style.scss';
 import panelData from './data.json';
 
 const LandingScreen3 = () => (
-  <LayoutScreen centred>
+  <LayoutScreen centred topOffset="100px" anchor="screen3">
     <div className={s.container}>
       <div className="cnr-main">
         <div className={s.title}>

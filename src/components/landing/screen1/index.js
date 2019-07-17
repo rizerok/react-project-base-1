@@ -20,7 +20,7 @@ const Slide = ({ text, img }) => (
 );
 
 const LandingScreen1 = () => (
-  <LayoutScreen>
+  <LayoutScreen topOffset="100px" anchor="screen1">
     <div className={s.container}>
       <UiSlider
         autoplay

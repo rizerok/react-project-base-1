@@ -15,7 +15,7 @@ const LandingScreen2 = () => {
     setOpenModal(false);
   };
 
-  return <LayoutScreen centred>
+  return <LayoutScreen centred topOffset="100px" anchor="screen2">
     <UiModal open={isModalOpen} onClose={closeModal}>
       <LandingContactUsForm/>
     </UiModal>
