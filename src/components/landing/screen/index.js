@@ -13,7 +13,6 @@ const LandingScreen = ({
 }) => (
   <Element
     id={anchor}
-    id={anchor}
     className={c(s.container, {
       [s.fullscreen]: fullscreen
     }, className)}
