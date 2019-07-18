@@ -1,6 +1,6 @@
 const { images: imagesRegExp } = require('./regexp-exts');
 
-const imageRules = {
+const imageRulesClient = {
   test: imagesRegExp,
   use: [
     {
@@ -12,6 +12,20 @@ const imageRules = {
   ]
 };
 
+const imageRulesServer = {
+  test: imagesRegExp,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[name].[hash:8].[ext]',
+        emitFile: false
+      }
+    }
+  ]
+};
+
 module.exports = {
-  imageRules
+  imageRulesClient,
+  imageRulesServer
 };

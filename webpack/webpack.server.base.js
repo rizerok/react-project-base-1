@@ -5,7 +5,7 @@ const alias = require('./alias');
 const {
   jsRulesServer,
   styleRulesModulesServer,
-  imageRules
+  imageRulesServer
 } = require('./rules');
 
 module.exports = {
@@ -19,6 +19,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
+    publicPath: '/static/',
     path: resolve('server')
   },
   resolve: {
@@ -28,7 +29,7 @@ module.exports = {
     rules: [
       jsRulesServer,
       styleRulesModulesServer,
-      imageRules
+      imageRulesServer
     ]
   },
   externals: [nodeExternals()]

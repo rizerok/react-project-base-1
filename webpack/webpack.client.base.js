@@ -8,7 +8,7 @@ const {
   jsRulesClient,
   styleRulesAssetsClient,
   styleRulesModulesClient,
-  imageRules
+  imageRulesClient
 } = require('./rules');
 
 const config = {
@@ -31,7 +31,7 @@ const config = {
       jsRulesClient,
       styleRulesAssetsClient,
       styleRulesModulesClient,
-      imageRules
+      imageRulesClient
     ]
   },
   plugins: [
