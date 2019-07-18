@@ -12,7 +12,7 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import MuiProvider from 'components/mui/provider';
 // src
 import reducer from 'src/reducers';
-import routes from 'src/routes';
+import routes from 'root/src/routes';
 import handleStaticRouterContext from 'middleware/ssr/handle-static-router-context';
 import Html from 'components/html';
 // node
@@ -22,7 +22,7 @@ import path from 'path';
 const manifest = JSON.parse(fs.readFileSync(path.resolve('public/static/manifest.json'), 'utf8'));
 
 const handleRender = preloadedState => async ctx => {
-  console.log(ctx.url);
+  console.log('url', ctx.url);
 
   // eslint-disable-next-line no-param-reassign
   preloadedState = preloadedState || ctx.state.preloadedState || {};

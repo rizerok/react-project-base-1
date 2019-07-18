@@ -3,19 +3,20 @@ import c from 'classnames';
 import { Element } from 'react-scroll';
 import s from './style.scss';
 // TODO need test cases
-const LayoutScreen = ({
+const LandingScreen = ({
   children,
   fullscreen = true,
   centred = false,
   anchor,
-  topOffset = '0px'
+  topOffset = '0px',
+  className
 }) => (
   <Element
     id={anchor}
     id={anchor}
     className={c(s.container, {
       [s.fullscreen]: fullscreen
-    })}
+    }, className)}
     style={{
       paddingTop: topOffset
     }}
@@ -27,4 +28,4 @@ const LayoutScreen = ({
     </div>
   </Element>
 );
-export default LayoutScreen;
+export default LandingScreen;

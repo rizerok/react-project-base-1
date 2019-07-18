@@ -1,18 +1,16 @@
 import RootLayout from 'components/root/layout';
-import Counter from 'components/counter';
 import NotFound from 'components/notfound';
-import Home from 'components/home';
+import DemoLanding from './demo-landing';
 
 const routes = [
   {
     component: RootLayout,
     routes: [
       {
-        path: '/',
+        path: '/landing',
         exact: true,
-        component: Home
+        component: DemoLanding
       },
-      { path: '/counter', component: Counter },
       {
         path: '*',
         component: NotFound

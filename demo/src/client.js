@@ -1,4 +1,4 @@
-import clientApp from './client-app';
+import clientApp from 'src/client-app';
 import routes from './routes';
 
 clientApp(routes);

@@ -33,6 +33,7 @@ module.exports = {
     'func-names': 'error',
     'arrow-spacing': 'error',
     'arrow-parens': 'off',
+    'no-shadow': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/jsx-uses-vars': 2,
     'react/jsx-uses-react': 2

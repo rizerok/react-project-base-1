@@ -1,21 +1,21 @@
 import React from 'react';
-import LayoutScreen from 'components/layout/screen';
-import LandingProduct from 'components/landing/product';
 import UiModal from 'components/ui/modal';
-import LandingContactUsForm from 'components/landing/contact-us/form';
+
+import LandingContactUsForm from '../contact-us/form';
+import DemoLandingProduct from '../product';
 import s from './style.scss';
 
 import products from './data.json';
 
 
-const LandingScreen2 = () => {
+const DemoLandingScreen2 = () => {
   const [isModalOpen, setOpenModal] = React.useState(false);
 
   const closeModal = () => {
     setOpenModal(false);
   };
 
-  return <LayoutScreen centred topOffset="100px" anchor="screen2">
+  return <div>
     <UiModal open={isModalOpen} onClose={closeModal}>
       <LandingContactUsForm/>
     </UiModal>
@@ -29,7 +29,7 @@ const LandingScreen2 = () => {
         <div className="cnr-main">
           <div className={s.contentArea}>
             {products.map((p, key) => (
-              <LandingProduct
+              <DemoLandingProduct
                 key={key}
                 title={p.title}
                 price={p.price}
@@ -41,7 +41,7 @@ const LandingScreen2 = () => {
         </div>
       </div>
     </div>
-  </LayoutScreen>;
+  </div>;
 };
 
-export default LandingScreen2;
+export default DemoLandingScreen2;

@@ -50,26 +50,24 @@ const mergeConfig = {
 
 module.exports = env => {
   const ENV = env || process.env.NODE_ENV || 'development';
+  const projectType = process.env.PROJECT_TYPE;
 
-  let clientConfig;
-  const serverConfig = require('./webpack/webpack.server.base.js');
+  let serverConfig = require('./webpack/webpack.server.base.js');
+  let clientConfig = require('./webpack/webpack.client.base.js');
 
-  console.log(`Run ${ENV} build.`);
+  console.log(`Run ${projectType ? `${projectType}:` : ''}${ENV} build.`);
 
-  // eslint-disable-next-line default-case
-  switch (ENV) { // TODO rewrite
-  case 'development': {
-    const base = require('./webpack/webpack.client.base.js');
-    const dev = require('./webpack/webpack.client.dev.js');
-    clientConfig = merge(mergeConfig)(base, dev);
-    break;
+  if (ENV === 'production') {
+    const clientProd = require('./webpack/webpack.client.prod.js');
+    clientConfig = merge(mergeConfig)(clientConfig, clientProd);
+  } else {
+    const clientDev = require('./webpack/webpack.client.dev.js');
+    clientConfig = merge(mergeConfig)(clientConfig, clientDev);
   }
-  case 'production': {
-    const base = require('./webpack/webpack.client.base.js');
-    const prod = require('./webpack/webpack.client.prod.js');
-    clientConfig = merge(mergeConfig)(base, prod);
-    break;
-  }
+
+  if (projectType === 'demo') {
+    serverConfig = merge(mergeConfig)(serverConfig, require('./webpack/webpack.server.demo.js'));
+    clientConfig = merge(mergeConfig)(clientConfig, require('./webpack/webpack.client.demo.js'));
   }
 
   return [clientConfig, serverConfig];

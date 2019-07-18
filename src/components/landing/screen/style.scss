@@ -1,7 +1,8 @@
 .container {
   width: 100vw;
   display: flex;
-  border: 4px solid #333; //TODO remove this
+  position: relative;
+  z-index: 1;
 
   &.fullscreen {
     min-height: 100vh;

@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "NODE_ENV=development webpack --progress",
-    "watch:dev": "NODE_ENV=development webpack-dev-server --progress",
     "build:prod": "NODE_ENV=production webpack --progress",
     "lint": "eslint -c \"./eslint/common.eslintrc.js\" \"**/**.js\" && stylelint \"./src/assets/styles/**/**.scss\"",
     "lint:fix": "eslint \"**/**.js\" --fix && stylelint \"./src/assets/styles/**/**.scss\" --fix",
@@ -16,7 +15,10 @@
     "build-server:dev": "NODE_ENV=development webpack --config ./webpack/webpack.server.base.js",
     "build-server:prod": "NODE_ENV=production webpack --config ./webpack/webpack.server.base.js",
     "serve": "node server/server.js",
-    "start": "NODE_ENV=development node start.js"
+    "start": "NODE_ENV=development node start.js",
+    "build-demo:dev": "NODE_ENV=development PROJECT_TYPE=demo webpack --progress",
+    "build-demo:prod": "NODE_ENV=production PROJECT_TYPE=demo webpack --progress",
+    "start:demo": "NODE_ENV=development PROJECT_TYPE=demo node start.js"
   },
   "author": "Alex",
   "license": "ISC",

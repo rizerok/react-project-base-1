@@ -3,7 +3,7 @@ import c from 'classnames';
 import Button from '@material-ui/core/Button';
 import s from './style.scss';
 
-const LandingProduct = ({
+const DemoLandingProduct = ({
   title,
   price,
   details,
@@ -32,4 +32,4 @@ const LandingProduct = ({
   </div>
 );
 
-export default LandingProduct;
+export default DemoLandingProduct;
