@@ -1,6 +1,7 @@
 # Compiled
 /public
 /server
+bundle-stats.json
 
 # Dependencies
 /node_modules
