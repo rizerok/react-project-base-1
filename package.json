@@ -20,7 +20,8 @@
     "start": "NODE_ENV=development node start.js",
     "build-demo:dev": "NODE_ENV=development PROJECT_TYPE=demo webpack --progress",
     "build-demo:prod": "NODE_ENV=production PROJECT_TYPE=demo webpack --progress",
-    "start:demo": "NODE_ENV=development PROJECT_TYPE=demo node start.js"
+    "start:demo": "NODE_ENV=development PROJECT_TYPE=demo node start.js",
+    "build-static-client": "node scripts/static-render"
   },
   "author": "Alex",
   "license": "ISC",
@@ -63,6 +64,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.1.0",

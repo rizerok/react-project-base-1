@@ -4,4 +4,20 @@
   justify-content: center;
   width: 100%;
   min-height: 100vh;
+  flex-direction: column;
+}
+
+.svg {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.complete {
+  opacity: 0;
+  transition: opacity 4s;
+
+  &.is-show {
+    opacity: 1;
+  }
 }

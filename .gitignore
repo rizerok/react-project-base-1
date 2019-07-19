@@ -1,6 +1,7 @@
 # Compiled
 /public
 /server
+/temp
 bundle-stats.json
 
 # Dependencies

@@ -13,3 +13,4 @@ base for simplest projects on react.
 9. editorconfig
 10. koa
 11. svgr
+12. client static render

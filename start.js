@@ -1,4 +1,5 @@
 /* eslint no-console: "off" */
+const rimraf = require('rimraf');
 const webpack = require('webpack');
 const nodemon = require('nodemon');
 const express = require('express');
@@ -6,6 +7,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const chalk = require('chalk');
+
+rimraf.sync('./public');
+rimraf.sync('./server');
+rimraf.sync('./temp');
 
 const webpackConfig = require('./webpack.config.js')(process.env.NODE_ENV || 'development');
 
