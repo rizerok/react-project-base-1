@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import FormBuilder from 'components/form/builder';
+import api from 'api';
 import s from './style.scss';
 
 import formModel from './form-model.json';
@@ -15,6 +16,7 @@ const LandingContactUsForm = () => {
   const send = () => {
     // eslint-disable-next-line
     console.log(vals);
+    api.fetch('/contact-us', vals);
   };
 
   return (

@@ -11,7 +11,7 @@ import { renderRoutes, matchRoutes } from 'react-router-config';
 import { ServerStyleSheets } from '@material-ui/styles';
 import MuiProvider from 'components/mui/provider';
 // src
-import reducer from 'src/reducers';
+import reducer from 'store/reducers';
 import routes from 'root/src/routes';
 import handleStaticRouterContext from 'middleware/ssr/handle-static-router-context';
 import Html from 'components/html';
@@ -32,6 +32,11 @@ const handleRender = preloadedState => async ctx => {
   const branch = matchRoutes(routes, ctx.url);
 
   const promises = branch.map(({ route }) => {
+    if (!route.component) {
+      throw Error(
+        'route.component is undefined, you forgot set component field or export component'
+      );
+    }
     const { fetchData } = route.component;
     return fetchData instanceof Function ? fetchData(store) : Promise.resolve(null);
   });

@@ -1,12 +1,15 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 
+import UiNotice from 'components/ui/notice';
+
 import style from './style.scss';
 
-class RootLayout extends React.Component {
-  render() {
-    return <div className={style.container}>{renderRoutes(this.props.route.routes)}</div>;
-  }
-}
+const RootLayout = ({ route }) => (
+  <div className={style.container}>
+    {renderRoutes(route.routes)}
+    <UiNotice/>
+  </div>
+);
 
 export default RootLayout;

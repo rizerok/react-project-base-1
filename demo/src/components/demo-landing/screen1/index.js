@@ -1,10 +1,10 @@
 import React from 'react';
 import UiSlider from 'components/ui/slider';
 
-import p1 from 'img/p1.jpeg';
-import p2 from 'img/p2.jpeg';
-import p3 from 'img/p3.jpeg';
-import p4 from 'img/p4.jpeg';
+import p1 from './img/p1.jpeg';
+import p2 from './img/p2.jpeg';
+import p3 from './img/p3.jpeg';
+import p4 from './img/p4.jpeg';
 
 import s from './style.scss';
 

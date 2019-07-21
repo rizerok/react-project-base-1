@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import counter from 'modules/counter';
+import counter from './counter';
+import notice from './notice';
 
 const reducers = combineReducers({
-  counter
+  counter,
+  notice
 });
 
 export default reducers;

@@ -6,6 +6,9 @@ module.exports = {
   styles: resolve('src', 'assets', 'styles'),
   img: resolve('src', 'assets', 'images'),
   components: resolve('src', 'components'),
-  modules: resolve('src', 'modules'),
-  middleware: resolve('src', 'middleware')
+  store: resolve('src', 'store'),
+  middleware: resolve('src', 'middleware'),
+  constants: resolve('src', 'constants'),
+  utils: resolve('src', 'utils'),
+  api: resolve('src', 'api')
 };
