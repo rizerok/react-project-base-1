@@ -9,6 +9,7 @@
       }
     ],
     "selector-max-id": 2,
+    "declaration-block-trailing-semicolon": "always",
     "scss/dollar-variable-colon-space-after": "always"
   }
 }
