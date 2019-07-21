@@ -1,9 +1,9 @@
-const { resolve } = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 // config parts
 const alias = require('./alias');
+const paths = require('../paths');
 const {
   jsRulesClient,
   styleRulesAssetsClient,
@@ -19,8 +19,8 @@ const config = {
   },
   output: {
     filename: 'bundle.js',
-    path: resolve('public', 'static'),
-    publicPath: '/static/',
+    path: paths.absolute.static,
+    publicPath: paths.server.static,
     chunkFilename: '[name].[chunkhash:8].chunk.js'
   },
   resolve: {

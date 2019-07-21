@@ -5,9 +5,11 @@ const rimraf = require('rimraf');
 const webpackConfig = require('../../webpack.config.js')(process.env.NODE_ENV || 'development');
 const webpackStaticRender = require('../../webpack/webpack.static.render.js');
 
-rimraf.sync(resolve('public'));
-rimraf.sync(resolve('server'));
-rimraf.sync(resolve('temp'));
+const paths = require('../../paths');
+
+rimraf.sync(paths.dirNames.public);
+rimraf.sync(paths.dirNames.server);
+rimraf.sync(paths.dirNames.temp);
 
 const [clientConfig] = webpackConfig;
 

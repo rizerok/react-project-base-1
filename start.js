@@ -8,9 +8,11 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const chalk = require('chalk');
 
-rimraf.sync('./public');
-rimraf.sync('./server');
-rimraf.sync('./temp');
+const paths = require('./paths');
+
+rimraf.sync(paths.dirNames.public);
+rimraf.sync(paths.dirNames.server);
+rimraf.sync(paths.dirNames.temp);
 
 const webpackConfig = require('./webpack.config.js')(process.env.NODE_ENV || 'development');
 
@@ -60,22 +62,24 @@ const start = async () => {
   clientConfig.output.hotUpdateMainFilename = 'updates/[hash].hot-update.json';
   clientConfig.output.hotUpdateChunkFilename = 'updates/[id].[hash].hot-update.js';
 
-  clientConfig.output.publicPath = [`${DEVSERVER_HOST}:${WEBPACK_PORT}`, '/static/']
+  clientConfig.output.publicPath = [`${DEVSERVER_HOST}:${WEBPACK_PORT}`, paths.server.static]
     .join('/')
     .replace(/([^:+])\/+/g, '$1/');
 
-  serverConfig.output.publicPath = [`${DEVSERVER_HOST}:${WEBPACK_PORT}`, '/static/']
+  serverConfig.output.publicPath = [`${DEVSERVER_HOST}:${WEBPACK_PORT}`, paths.server.static]
     .join('/')
     .replace(/([^:+])\/+/g, '$1/');
 
   // create compilers
   const multiCompiler = webpack([clientConfig, serverConfig]);
   // split compilers
-  const clientCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'client');
-  const serverCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'server');
+  const clientCompiler = multiCompiler.compilers
+    .find((compiler) => compiler.name === clientConfig.name);
+  const serverCompiler = multiCompiler.compilers
+    .find((compiler) => compiler.name === serverConfig.name);
   // wrap compilers in promise
-  const clientPromise = compilerPromise('client', clientCompiler);
-  const serverPromise = compilerPromise('server', serverCompiler);
+  const clientPromise = compilerPromise(clientConfig.name, clientCompiler);
+  const serverPromise = compilerPromise(serverConfig.name, serverCompiler);
 
   const watchOptions = {
     ignored: /node_modules/
@@ -90,7 +94,7 @@ const start = async () => {
   // use webpack dev middleware and start compiling client
   app.use(
     webpackDevMiddleware(clientCompiler, {
-      publicPath: '/public/',
+      publicPath: `/${paths.dirNames.public}/`,
       watchOptions,
       writeToDisk: true
     })
@@ -100,7 +104,7 @@ const start = async () => {
   app.use(webpackHotMiddleware(clientCompiler));
 
   // set static path for express
-  app.use(express.static('public'));
+  app.use(express.static(paths.dirNames.public));
 
   app.listen(WEBPACK_PORT);
 
@@ -131,10 +135,12 @@ const start = async () => {
   } catch (error) {
     logMessage(error, 'error');
   }
+
+  const serverBundleName = Object.keys(serverConfig.entry)[0];
   // NODEMON
   const script = nodemon({
-    script: 'server/server.js',
-    watch: 'server/server.js',
+    script: `${paths.rootProject.server}/${serverBundleName}.js`,
+    watch: `${paths.rootProject.server}/${serverBundleName}.js`,
     delay: 200
   });
 

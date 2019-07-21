@@ -1,3 +1,4 @@
+const paths = require('../../paths');
 const { images: imagesRegExp } = require('./regexp-exts');
 
 const imageRulesClient = {
@@ -6,7 +7,7 @@ const imageRulesClient = {
     {
       loader: 'file-loader',
       options: {
-        name: 'assets/[name].[hash:8].[ext]'
+        name: `${paths.dirNames.assets}/[name].[hash:8].[ext]`
       }
     }
   ]
@@ -18,7 +19,7 @@ const imageRulesServer = {
     {
       loader: 'file-loader',
       options: {
-        name: 'assets/[name].[hash:8].[ext]',
+        name: `${paths.dirNames.assets}/[name].[hash:8].[ext]`,
         emitFile: false
       }
     }

@@ -2,6 +2,7 @@ const nodeExternals = require('webpack-node-externals');
 const { resolve } = require('path');
 // config parts
 const alias = require('./alias');
+const paths = require('../paths');
 const {
   jsRulesServer,
   styleRulesModulesServer,
@@ -19,8 +20,8 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    publicPath: '/static/',
-    path: resolve('server')
+    publicPath: paths.server.static,
+    path: paths.absolute.server
   },
   resolve: {
     alias

@@ -12,14 +12,19 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import MuiProvider from 'components/mui/provider';
 // src
 import reducer from 'store/reducers';
-import routes from 'root/src/routes';
+import routes from 'project/src/routes';
 import handleStaticRouterContext from 'middleware/ssr/handle-static-router-context';
 import Html from 'components/html';
 // node
-import fs from 'fs';
-import path from 'path';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
-const manifest = JSON.parse(fs.readFileSync(path.resolve('public/static/manifest.json'), 'utf8'));
+import paths from 'root/paths';
+
+const manifest = JSON.parse(readFileSync(
+  resolve(`${paths.rootProject.static}/manifest.json`),
+  'utf8'
+));
 
 const handleRender = preloadedState => async ctx => {
   console.log('url', ctx.url);
