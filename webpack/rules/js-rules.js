@@ -20,7 +20,9 @@ const jsRulesClient = {
     loader: 'babel-loader',
     options: {
       presets: ['@babel/preset-env', '@babel/preset-react'],
-      plugins
+      plugins,
+      cacheCompression: process.env.NODE_ENV === 'production',
+      compact: process.env.NODE_ENV === 'production'
     }
   }
 };
@@ -32,7 +34,9 @@ const jsRulesServer = {
     loader: 'babel-loader',
     options: {
       presets: ['@babel/preset-react'],
-      plugins
+      plugins,
+      cacheCompression: process.env.NODE_ENV === 'production',
+      compact: process.env.NODE_ENV === 'production'
     }
   }
 };
