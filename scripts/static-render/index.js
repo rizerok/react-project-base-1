@@ -5,26 +5,9 @@ const rimraf = require('rimraf');
 const webpackConfig = require('../../webpack.config.js')(process.env.NODE_ENV || 'development');
 const webpackStaticRender = require('../../webpack/webpack.static.render.js');
 
-const paths = require('../../paths');
-
-rimraf.sync(paths.dirNames.public);
-rimraf.sync(paths.dirNames.server);
-rimraf.sync(paths.dirNames.temp);
+const { compilerPromise, cleanDirs } = require('../utils');
 
 const [clientConfig] = webpackConfig;
-
-const compilerPromise = (name, compiler) => new Promise((resolve, reject) => {
-  compiler.hooks.compile.tap(name, () => {
-    console.log(`[${name}] Compiling `);
-  });
-  compiler.hooks.done.tap(name, (stats) => {
-    if (!stats.hasErrors()) {
-      return resolve();
-    }
-    // eslint-disable-next-line prefer-promise-reject-errors
-    return reject(`Failed to compile ${name}`);
-  });
-});
 
 const runCompiler = (name, compiler) => {
   const cp = compilerPromise(name, compiler);
@@ -37,6 +20,7 @@ const runCompiler = (name, compiler) => {
 };
 
 const run = async () => {
+  cleanDirs();
   const clientCompiler = webpack(clientConfig);
   const staticRenderCompiler = webpack(webpackStaticRender);
 
