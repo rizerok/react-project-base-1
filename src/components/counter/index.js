@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { increment, decrement } from 'store/counter';
@@ -24,6 +25,9 @@ class Counter extends Component {
     const { counter, onIncrement, onDecrement } = this.props;
     return (
       <p>
+        <Helmet>
+          <title>Counter</title>
+        </Helmet>
         <span>
                     Clicked: {counter} times
         </span>

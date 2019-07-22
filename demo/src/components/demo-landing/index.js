@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import {
   LandingLayout,
   Screen,
@@ -15,6 +16,9 @@ import s from './style.scss';
 
 const DemoLanding = () => (
   <LandingLayout>
+    <Helmet>
+      <title>Landing example</title>
+    </Helmet>
     <HeaderFixed className={s.header} height="100px">
       <Navigation navigation={{
         smooth: true,
