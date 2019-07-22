@@ -1,5 +1,6 @@
 /* eslint no-console: "off" */
 const fs = require('fs');
+const prettier = require('prettier');
 const { resolve } = require('path');
 const { handleRender, routes } = require('../../temp/compiled-sources.js');
 
@@ -55,7 +56,9 @@ const createPageRender = (handleRender, rootDir) => async (name, url, state = {}
   const filePath = `${rootDir}/${name}.html`;
   console.log('file path', filePath);
 
-  fs.writeFileSync(filePath, ctx.body);
+  fs.writeFileSync(filePath, process.env.NODE_ENV === 'development'
+    ? prettier.format(ctx.body, { parser: 'html' })
+    : ctx.body);
 };
 
 const rootDir = resolve('public');
