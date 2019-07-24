@@ -2,6 +2,7 @@
 require('dotenv').config();
 const NodeSsh = require('node-ssh');
 const os = require('os');
+const { resolve } = require('path');
 
 const [CONFIG_TYPE, DEPLOYTYPE] = process.argv.slice(2);
 
@@ -79,7 +80,14 @@ const deploy = async confType => {
   await execShell(`git pull ${config.default.repository} ${config[confType].branch}`);
   await execShell('npm i');
 
-  await execShell('ls -la');
+  await remoteServer.putFile(resolve('server.env'), `${config.default.dir}/.env`);
+
+  await execShell('service nginx stop');
+  await execShell(`cd ${config.default.dir}`);
+  await execShell('npm run build:p');
+  await execShell('pm2 start server/server.js');
+  await execShell('pm2 restart 0');
+
   remoteServer.dispose();
 };
 
@@ -122,8 +130,6 @@ const deployInit = async confType => {
   await execShell('npm install pm2 -g');
   // install npm-merge-driver for package-lock.json
   await execShell('npx npm-merge-driver install -g');
-  // install http-server
-  await execShell('npm install http-server -g');
   // setup project
   await execShell(`mkdir -p ${config.default.dir}`);
   await execShell(`cd ${config.default.dir}`);
@@ -133,7 +139,7 @@ const deployInit = async confType => {
   remoteServer.dispose();
 };
 
-
+console.log('DEPLOYTYPE', DEPLOYTYPE, 'CONFIG_TYPE', CONFIG_TYPE);
 switch (DEPLOYTYPE) {
 case 'force':
   deployForce(CONFIG_TYPE);

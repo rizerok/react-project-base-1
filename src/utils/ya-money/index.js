@@ -1,10 +1,14 @@
 /* eslint no-console: "off" */
 import { ExternalPayment } from 'yandex-money-sdk';
 
+require('dotenv').config();
+
 const handleResponse = (res, rej) => (err, data) => (err ? rej(err) : res(data));
 
 const clientId = process.env.YANDEX_MONEY_CLIENT_ID;
 const walletNumber = process.env.YANDEX_MONEY_WALLET_NAUMBER;
+const domainName = process.env.DOMAIN_NAME;
+const protocol = process.env.PROTOCOL;
 
 const getAppInstanceId = () => new Promise((res, rej) => ExternalPayment.getInstanceId(
   clientId,
@@ -37,9 +41,11 @@ const processPayment = (externalPayment, {
   },
   handleResponse(res, rej)
 ));
-
+// console.log('clientId', clientId);
 const createPayment = async (options) => {
-  const { instance_id: instanceId } = await getAppInstanceId(clientId);
+  const instanseIdData = await getAppInstanceId();
+  console.log('instanseIdData', instanseIdData);
+  const instanceId = instanseIdData.instance_id;
   console.log('instanceId', instanceId);
   const ep = new ExternalPayment(instanceId);
   console.log('ep', ep);
@@ -48,8 +54,8 @@ const createPayment = async (options) => {
   return processPayment(ep, {
     instanceId,
     requestId: rpData.request_id,
-    successUrl: 'http://localhost:3000/order/success',
-    failUrl: 'http://localhost:3000/fail'
+    successUrl: `${protocol}://${domainName}/order/success`,
+    failUrl: `${protocol}://${domainName}/order/fail`
   });
 };
 

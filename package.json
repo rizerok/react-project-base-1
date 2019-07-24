@@ -19,9 +19,9 @@
     "serve": "node server/server.js",
     "lint": "eslint -c \"./eslint/common.eslintrc.js\" \"**/**.js\" && stylelint \"**/**.scss\"",
     "lint:fix": "eslint \"**/**.js\" --fix && stylelint \"**/**.scss\" --fix",
-    "deploy-stage": "node deploy stage",
-    "deploy-stage:force": "node deploy stage force",
-    "server-setup": "node deploy stage init",
+    "deploy-stage": "node scripts/deploy stage",
+    "deploy-stage:force": "node scripts/deploy stage force",
+    "server-setup": "node scripts/deploy stage init",
     "commit": "git-cz"
   },
   "author": "Alex",

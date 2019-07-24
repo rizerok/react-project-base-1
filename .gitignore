@@ -2,13 +2,13 @@
 /public
 /server
 /temp
-bundle-stats.json
 
 # Dependencies
 /node_modules
 
 # Environment file
 .env
+server.env
 
 # IDEs and editors
 /.idea
