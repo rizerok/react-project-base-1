@@ -103,6 +103,7 @@
     "react-router-dom": "^5.0.1",
     "react-scroll": "^1.7.12",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yandex-money-sdk": "^0.1.7"
   }
 }

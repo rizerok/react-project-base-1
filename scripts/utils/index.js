@@ -1,3 +1,4 @@
+/* eslint no-console: "off" */
 const rimraf = require('rimraf');
 const chalk = require('chalk');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');

@@ -7,7 +7,11 @@ export default response => {
     openNotice(response.data.noticeType, response.data.msg);
   }
   if (response.action === 'redirect') {
-    history.replace(response.data.to);
+    if (response.data.type === 'local') {
+      history.replace(response.data.to);
+    } else {
+      window.location.href = response.data.to;
+    }
   }
   return response;
 };
