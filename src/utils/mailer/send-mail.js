@@ -1,9 +1,20 @@
 import nodemailer from 'nodemailer';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+require('dotenv').config();
+
+const dkim = {
+  domainName: process.env.DOMAIN_NAME,
+  keySelector: process.env.MAIL_KEY_SELECTOR,
+  privateKey: readFileSync(resolve('private-dkim.txt'), 'utf8')
+};
 
 const transporter = nodemailer.createTransport({
   sendmail: true,
   newline: 'unix',
-  path: '/usr/sbin/sendmail'
+  path: '/usr/sbin/sendmail',
+  dkim
 });
 
 const sendMail = ({

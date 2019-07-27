@@ -81,6 +81,7 @@ const deploy = async confType => {
   await execShell('npm i');
 
   await remoteServer.putFile(resolve('server.env'), `${config.default.dir}/.env`);
+  await remoteServer.putFile(resolve('private-dkim.txt'), `${config.default.dir}/private-dkim.txt`);
 
   await execShell('service nginx stop');
   await execShell(`cd ${config.default.dir}`);

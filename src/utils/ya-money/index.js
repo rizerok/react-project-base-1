@@ -7,7 +7,9 @@ const handleResponse = (res, rej) => (err, data) => (err ? rej(err) : res(data))
 
 const clientId = process.env.YANDEX_MONEY_CLIENT_ID;
 const walletNumber = process.env.YANDEX_MONEY_WALLET_NAUMBER;
-const domainName = process.env.DOMAIN_NAME;
+const domainName = process.env.DOMAIN_NAME === 'localhost'
+  ? `${process.env.DOMAIN_NAME}:${process.env.SERVER_PORT}`
+  : process.env.DOMAIN_NAME;
 const protocol = process.env.PROTOCOL;
 
 const getAppInstanceId = () => new Promise((res, rej) => ExternalPayment.getInstanceId(

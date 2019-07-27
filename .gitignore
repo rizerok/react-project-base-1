@@ -15,3 +15,7 @@ server.env
 
 # MacOS specific files
 .DS_STORE
+
+# DKIM files
+private-dkim.txt
+public-dkim.txt
